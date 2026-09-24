@@ -1662,37 +1662,37 @@ Primary Objection: ${e.objPattern || "None"}
                   }, "⏭")
                 )
               )
-            ),
-            React.createElement("div", {
-              className: "dashboard-page-footer no-print",
-              style: {
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: "20px",
-                padding: "10px 4px",
-                borderTop: "1px solid #e2e8f0",
-                fontSize: "12px",
-                color: "#64748b"
-              }
-            },
-              React.createElement("span", null, "Sales Mastery Suite • Live Call Execution Platform"),
-              React.createElement("button", {
-                type: "button",
-                style: {
-                  background: "none",
-                  border: "none",
-                  color: "#94a3b8",
-                  cursor: "pointer",
-                  fontSize: "11.5px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px"
-                },
-                onClick: () => T(true),
-                title: "Nebula CRM Integration Settings"
-              }, "⚙️ Nebula CRM Settings")
             )
+          ),
+          React.createElement("div", {
+            className: "dashboard-page-footer no-print",
+            style: {
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "20px",
+              padding: "10px 4px",
+              borderTop: "1px solid #e2e8f0",
+              fontSize: "12px",
+              color: "#64748b"
+            }
+          },
+            React.createElement("span", null, "Sales Mastery Suite • Live Call Execution Platform"),
+            React.createElement("button", {
+              type: "button",
+              style: {
+                background: "none",
+                border: "none",
+                color: "#94a3b8",
+                cursor: "pointer",
+                fontSize: "11.5px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px"
+              },
+              onClick: () => T(true),
+              title: "Nebula CRM Integration Settings"
+            }, "⚙️ Nebula CRM Settings")
           )
         )
       ) : (
