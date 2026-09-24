@@ -1999,6 +1999,311 @@ textarea {
   gap: 12px;
 }
 
+/* Nebula Live Sync UI Elements */
+.btn-nebula-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0f172a;
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-nebula-sync:hover:not(:disabled) {
+  background: #1e293b;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-nebula-sync:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-nebula-toolbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #86efac;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-nebula-toolbar:hover:not(:disabled) {
+  background: #dcfce7;
+  border-color: #4ade80;
+  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.15);
+}
+
+.btn-nebula-toolbar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sync-spin-icon {
+  display: inline-block;
+  font-size: 13px;
+  transition: transform 0.3s ease;
+}
+
+.spin-anim,
+.loading .sync-spin-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.nebula-source-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  padding: 2px 7px;
+  border-radius: 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-top: 3px;
+  width: fit-content;
+}
+
+.nebula-status-banner {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.nebula-status-banner.error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.nebula-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.nebula-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  flex-shrink: 0;
+}
+
+.nebula-live-dot.loading {
+  background: #3b82f6;
+  animation: pulse-dot 1.2s infinite;
+}
+
+.nebula-live-dot.error {
+  background: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.4; }
+}
+
+.nebula-synced-time {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* View Mode & Edit Mode Banners & Controls */
+.view-mode-banner {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.view-mode-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.view-mode-badge {
+  background: #38bdf8;
+  color: #0f172a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.view-mode-title {
+  color: #f1f5f9;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.view-mode-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-edit-mode {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-edit-mode:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
+}
+
+.edit-mode-active-banner {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.edit-mode-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: #166534;
+  font-weight: 500;
+}
+
+.edit-mode-badge {
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Follow-up & Edit Action Buttons in Records Table */
+.btn-table-action.followup {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+}
+
+.btn-table-action.followup:hover {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-table-action.edit {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  font-weight: 600;
+}
+
+.btn-table-action.edit:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Disabled & View Mode control styling */
+.view-mode-active input,
+.view-mode-active textarea,
+.view-mode-active select,
+.view-mode-active .btn-date-now,
+.view-mode-active .preset-chip {
+  pointer-events: none !important;
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+  opacity: 0.95 !important;
+  cursor: default !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+.view-mode-active input[type="radio"],
+.view-mode-active input[type="checkbox"] {
+  pointer-events: none !important;
+  cursor: default !important;
+  accent-color: #2563eb;
+}
+
+.view-mode-active .btn-submit-call {
+  background: #64748b !important;
+  border-color: #475569 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
 /* Print Styles */
 @media print {
   body {
