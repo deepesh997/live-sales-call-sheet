@@ -396,7 +396,12 @@ Primary Objection: ${e.objPattern||"None"}
             className: "btn btn-nebula",
             onClick: () => T(true),
             title: "Nebula CRM Settings & Schema"
-          }, "🌌 Nebula CRM")
+          }, "🌌 Nebula CRM"),
+          history.length > 0 && React.createElement("button", {
+            className: "btn btn-outline-danger",
+            onClick: clearAllHistory,
+            title: "Clear all saved call records"
+          }, "🗑️ Clear All")
         )
       )
     )
@@ -404,28 +409,7 @@ Primary Objection: ${e.objPattern||"None"}
   React.createElement("main", { className: "document-container" },
     currentView === "dashboard" ? (
       React.createElement("div", { className: "dashboard-container fade-in" },
-        React.createElement("div", { className: "dashboard-hero" },
-          React.createElement("div", { className: "dashboard-hero-text" },
-            React.createElement("h1", { className: "dashboard-title" }, "Sales Call Intelligence & Records"),
-            React.createElement("p", { className: "dashboard-subtitle" },
-              "Pre-call preparation records, verbatim discovery transcripts, objection telemetry, and Nebula CRM sync history."
-            )
-          ),
-          React.createElement("div", { className: "dashboard-hero-actions" },
-            React.createElement("button", {
-              className: "btn btn-primary btn-lg",
-              onClick: startNewCallSheet
-            }, "➕ Start New Live Call"),
-            React.createElement("button", {
-              className: "btn btn-secondary",
-              onClick: loadDemoHistory
-            }, "✨ Demo Records"),
-            history.length > 0 && React.createElement("button", {
-              className: "btn btn-outline-danger",
-              onClick: clearAllHistory
-            }, "🗑️ Clear All")
-          )
-        ),
+
         React.createElement("div", { className: "analytics-grid" },
           React.createElement("div", { className: "analytic-card" },
             React.createElement("div", { className: "analytic-header" },
