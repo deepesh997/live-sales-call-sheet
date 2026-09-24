@@ -645,7 +645,7 @@ function LiveCallSheetApp() {
   const [nebulaFetchError, setNebulaFetchError] = useState(null);
   const [lastSyncedAt, setLastSyncedAt] = useState(null);
   const [currentPage, setCurrentPage] = useState(initialRoute.page || 1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
 
   const fetchNebulaRecords = async (showToast = true) => {
     setIsLoadingNebula(true);
