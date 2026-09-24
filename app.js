@@ -1288,8 +1288,6 @@ Primary Objection: ${e.objPattern || "None"}
               React.createElement("button", { type: "button", className: "timer-btn-inline", onClick: G, title: d ? "Pause Timers" : "Resume Timers" }, d ? "⏸️" : "▶️"),
               React.createElement("button", { type: "button", className: "timer-btn-inline", onClick: H, title: "Reset All Timers" }, "↺")
             ),
-            React.createElement("button", { className: "btn btn-secondary", onClick: ce, title: "Fill sample enterprise call data" }, "✨ Sample Data"),
-            React.createElement("button", { className: "btn btn-nebula", onClick: () => T(true), title: "Nebula CRM Settings & Schema" }, "🌌 Nebula CRM", e.nebulaSyncStatus.startsWith("Synced") && React.createElement("span", { className: "sync-badge-mini" }, "✓")),
             React.createElement("button", { className: "btn btn-secondary", onClick: () => window.print(), title: "Print Call Sheet or Save PDF" }, "🖨️ Print"),
             React.createElement("button", { className: "btn btn-outline-danger", onClick: re, title: "Reset Worksheet" }, "🧹 Reset")
           )
