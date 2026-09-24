@@ -12,3 +12,12 @@
 .modal-tab-btn{background:none;border:none;padding:8px 14px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
 .modal-tab-btn:hover{color:#1e293b}
 .modal-tab-btn.active{color:#7e22ce;border-bottom-color:#7e22ce}
+
+/* Direct Submit Button & Submission Results */
+.btn-submit-call{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#ffffff!important;font-size:14px;font-weight:700;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 14px rgba(124,58,237,0.35);transition:all .2s ease}
+.btn-submit-call:hover{background:linear-gradient(135deg,#1d4ed8,#6d28d9);transform:translateY(-1px);box-shadow:0 6px 18px rgba(124,58,237,0.45)}
+.btn-submit-call:disabled{opacity:0.65;cursor:not-allowed;transform:none}
+.submission-card{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:16px 20px;margin:18px 0;box-shadow:0 2px 8px rgba(22,101,52,0.08)}
+.submission-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.submission-title{font-size:14px;font-weight:700;color:#15803d;display:flex;align-items:center;gap:8px}
+.submission-details{font-size:12.5px;color:#166534;line-height:1.5;margin-bottom:12px}
