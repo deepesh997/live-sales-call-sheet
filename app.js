@@ -694,16 +694,6 @@ Primary Objection: ${e.objPattern||"None"}
           React.createElement("span", null, "📝"),
           React.createElement("span", null, "Live Call Sheet")
         )
-      ),
-      React.createElement("button", {
-        type: "button",
-        className: `btn-nebula-sync ${isLoadingNebula ? "loading" : ""}`,
-        onClick: () => fetchNebulaRecords(true),
-        disabled: isLoadingNebula,
-        title: "Fetch live call sheets from Nebula REST API (GET)"
-      },
-        React.createElement("span", { className: `sync-spin-icon ${isLoadingNebula ? "spin-anim" : ""}` }, "🔄"),
-        React.createElement("span", null, isLoadingNebula ? "Syncing Nebula..." : "Refresh Nebula")
       )
     ),
     currentView === "sheet" ? (
@@ -726,13 +716,7 @@ Primary Objection: ${e.objPattern||"None"}
           React.createElement("span", { className: "stage-sub-timer" }, formatDuration(s[3]))
         )
       )
-    ) : (
-      React.createElement("div", { className: "dashboard-quick-stats" },
-        React.createElement("span", { className: "stats-pill" }, `Total Calls: ${history.length}`),
-        React.createElement("span", { className: "stats-pill won" }, `Win Rate: ${analytics.wonRate}%`),
-        React.createElement("span", { className: "stats-pill follow" }, `Pipeline: ${analytics.followUps}`)
-      )
-    ),
+    ) : null,
     React.createElement("div", { className: "actions" },
       currentView === "sheet" ? (
         React.createElement(React.Fragment, null,
@@ -750,26 +734,25 @@ Primary Objection: ${e.objPattern||"None"}
         )
       ) : (
         React.createElement(React.Fragment, null,
+          React.createElement("div", {
+            className: `nebula-header-status-pill ${isLoadingNebula ? "loading" : nebulaFetchError ? "error" : "active"}`,
+            onClick: () => fetchNebulaRecords(true),
+            title: isLoadingNebula ? "Fetching records from Nebula..." : (nebulaFetchError ? `Notice: ${nebulaFetchError}` : `Connected to Nebula CRM · ${history.length} records loaded live. Click to refresh.`)
+          },
+            React.createElement("span", { className: `nebula-live-dot ${isLoadingNebula ? "loading" : nebulaFetchError ? "error" : ""}` }),
+            React.createElement("span", { className: "nebula-header-label" }, isLoadingNebula ? "Syncing..." : "Nebula Live"),
+            React.createElement("span", { className: `sync-spin-icon ${isLoadingNebula ? "spin-anim" : ""}` }, "🔄")
+          ),
+          React.createElement("button", {
+            className: "btn btn-secondary",
+            onClick: () => T(true),
+            title: "Nebula CRM Settings & Schema"
+          }, "🌌 CRM Config"),
           React.createElement("button", {
             className: "btn btn-primary btn-start-call",
             onClick: startNewCallSheet,
             title: "Start a new live sales call sheet"
-          }, "➕ Start New Live Call"),
-          React.createElement("button", {
-            className: "btn btn-secondary",
-            onClick: loadDemoHistory,
-            title: "Load demo enterprise call records into analytics"
-          }, "✨ Load Demo Records"),
-          React.createElement("button", {
-            className: "btn btn-nebula",
-            onClick: () => T(true),
-            title: "Nebula CRM Settings & Schema"
-          }, "🌌 Nebula CRM"),
-          history.length > 0 && React.createElement("button", {
-            className: "btn btn-outline-danger",
-            onClick: clearAllHistory,
-            title: "Clear all saved call records"
-          }, "🗑️ Clear All")
+          }, "➕ Start Live Call")
         )
       )
     )
@@ -777,33 +760,6 @@ Primary Objection: ${e.objPattern||"None"}
   React.createElement("main", { className: "document-container" },
     currentView === "dashboard" ? (
       React.createElement("div", { className: "dashboard-container fade-in" },
-        React.createElement("div", { className: `nebula-status-banner ${nebulaFetchError ? "error" : ""}` },
-          React.createElement("div", { className: "nebula-status-indicator" },
-            React.createElement("span", { className: `nebula-live-dot ${isLoadingNebula ? "loading" : nebulaFetchError ? "error" : ""}` }),
-            React.createElement("span", { className: "nebula-status-text" },
-              isLoadingNebula
-                ? "Connecting to Nebula REST endpoint (GET /liveCallSheets)..."
-                : nebulaFetchError
-                ? `Nebula Sync Notice: ${nebulaFetchError} (Displaying cached records)`
-                : `Connected to Nebula CRM · ${history.length} call records loaded live via GET endpoint`
-            )
-          ),
-          React.createElement("div", { style: { display: "flex", alignItems: "center", gap: "10px" } },
-            lastSyncedAt && React.createElement("span", { className: "nebula-synced-time" },
-              `Last updated: ${lastSyncedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}`
-            ),
-            React.createElement("button", {
-              type: "button",
-              className: `btn-nebula-sync ${isLoadingNebula ? "loading" : ""}`,
-              onClick: () => fetchNebulaRecords(true),
-              disabled: isLoadingNebula,
-              style: { padding: "4px 10px", fontSize: "11px" }
-            },
-              React.createElement("span", { className: `sync-spin-icon ${isLoadingNebula ? "spin-anim" : ""}` }, "🔄"),
-              React.createElement("span", null, isLoadingNebula ? "Syncing..." : "Refresh")
-            )
-          )
-        ),
 
         React.createElement("div", { className: "analytics-grid" },
           React.createElement("div", { className: "analytic-card" },
@@ -907,23 +863,24 @@ Primary Objection: ${e.objPattern||"None"}
               React.createElement("option", { value: "Python Programming" }, "Python Programming"),
               React.createElement("option", { value: "Full Stack Development" }, "Full Stack Development")
             ),
+            (searchQuery || filterOutcome !== "ALL" || filterCourse !== "ALL") && React.createElement("button", {
+              type: "button",
+              className: "btn-reset-filters",
+              onClick: () => { setSearchQuery(""); setFilterOutcome("ALL"); setFilterCourse("ALL"); },
+              title: "Clear search & outcome filters"
+            }, "Reset"),
             React.createElement("button", {
               type: "button",
               className: `btn-nebula-toolbar ${isLoadingNebula ? "loading" : ""}`,
               onClick: () => fetchNebulaRecords(true),
               disabled: isLoadingNebula,
-              title: "Refresh live records from Nebula REST API (GET)"
+              title: "Refresh live records from Nebula REST API"
             },
               React.createElement("span", { className: `sync-spin-icon ${isLoadingNebula ? "spin-anim" : ""}` }, "🔄"),
-              React.createElement("span", null, isLoadingNebula ? "Refreshing..." : "Refresh from Nebula")
+              React.createElement("span", null, isLoadingNebula ? "Syncing..." : "Refresh")
             ),
-            (searchQuery || filterOutcome !== "ALL" || filterCourse !== "ALL") && React.createElement("button", {
-              type: "button",
-              className: "btn-reset-filters",
-              onClick: () => { setSearchQuery(""); setFilterOutcome("ALL"); setFilterCourse("ALL"); }
-            }, "Reset Filters"),
-            React.createElement("span", { className: "records-counter" },
-              `Showing ${filteredHistory.length} of ${history.length} records`
+            React.createElement("span", { className: "records-counter-pill" },
+              `${filteredHistory.length} ${filteredHistory.length === 1 ? "record" : "records"}`
             )
           )
         ),
@@ -972,7 +929,7 @@ Primary Objection: ${e.objPattern||"None"}
                   React.createElement("th", { style: { width: "12%" } }, "Call Timing"),
                   React.createElement("th", { style: { width: "13%" } }, "Final Outcome"),
                   React.createElement("th", { style: { width: "14%" } }, "Fit & Motive"),
-                  React.createElement("th", { style: { width: "22%" } }, "Actions")
+                  React.createElement("th", { style: { width: "17%", textAlign: "center" } }, "Actions")
                 )
               ),
               React.createElement("tbody", null,
@@ -1043,41 +1000,57 @@ Primary Objection: ${e.objPattern||"None"}
                         motiveStr ? React.createElement("p", { className: "record-motive-text", title: motiveStr }, motiveStr) : React.createElement("span", { className: "record-muted" }, "No motive recorded")
                       )
                     ),
-                    React.createElement("td", null,
-                      React.createElement("div", { className: "record-actions-cell" },
-                        React.createElement("button", {
-                          type: "button",
-                          className: "btn-table-action primary",
-                          onClick: () => openRecordInViewMode(item),
-                          title: "Open record in View Mode (Read-Only)"
-                        }, "👁️ View"),
-                        React.createElement("button", {
-                          type: "button",
-                          className: "btn-table-action edit",
-                          onClick: () => openRecordInEditMode(item),
-                          title: "Open and edit this call sheet"
-                        }, "✏️ Edit"),
-                        (item.callAttempt === "1st Attempt" || item.callAttempt === "OPT1ST_ATTEMPT" || item.formData?.metaAttempt === "1st Attempt") && React.createElement("button", {
-                          type: "button",
-                          className: "btn-table-action followup",
-                          onClick: () => continueToFollowUp(item),
-                          title: "Start Follow-up Call continuing this prospect's data (sets 2nd Attempt & resets timers)"
-                        }, "📞 Follow-up"),
-                        React.createElement("button", {
-                          type: "button",
-                          className: "btn-table-action",
-                          onClick: () => {
-                            navigator.clipboard.writeText(JSON.stringify(item.payload || item.formData || item.rawNebula, null, 2));
-                            h("📋 Complete JSON payload copied to clipboard!");
-                          },
-                          title: "Copy JSON Payload"
-                        }, "📋 JSON"),
-                        React.createElement("button", {
-                          type: "button",
-                          className: "btn-table-action danger",
-                          onClick: () => deleteHistoryItem(item.id),
-                          title: "Delete this record"
-                        }, "🗑️")
+                    React.createElement("td", { className: "actions-td" },
+                      React.createElement("div", { className: "record-actions-card" },
+                        React.createElement("div", { className: "record-actions-row primary-row" },
+                          React.createElement("button", {
+                            type: "button",
+                            className: "btn-table-action view-btn",
+                            onClick: () => openRecordInViewMode(item),
+                            title: "Open record in View Mode (Read-Only)"
+                          }, "👁️ View"),
+                          React.createElement("button", {
+                            type: "button",
+                            className: "btn-table-action edit-btn",
+                            onClick: () => openRecordInEditMode(item),
+                            title: "Open and edit this call sheet"
+                          }, "✏️ Edit")
+                        ),
+                        React.createElement("div", { className: "record-actions-row secondary-row" },
+                          (item.callAttempt === "1st Attempt" || item.callAttempt === "OPT1ST_ATTEMPT" || item.formData?.metaAttempt === "1st Attempt") ? (
+                            React.createElement("button", {
+                              type: "button",
+                              className: "btn-table-action followup-btn",
+                              onClick: () => continueToFollowUp(item),
+                              title: "Start Follow-up Call continuing this prospect's data (sets 2nd Attempt & resets timers)"
+                            }, "📞 Follow-up")
+                          ) : (
+                            React.createElement("button", {
+                              type: "button",
+                              className: "btn-table-action json-wide-btn",
+                              onClick: () => {
+                                navigator.clipboard.writeText(JSON.stringify(item.payload || item.formData || item.rawNebula, null, 2));
+                                h("📋 Complete JSON payload copied to clipboard!");
+                              },
+                              title: "Copy JSON Payload"
+                            }, "📋 JSON")
+                          ),
+                          (item.callAttempt === "1st Attempt" || item.callAttempt === "OPT1ST_ATTEMPT" || item.formData?.metaAttempt === "1st Attempt") && React.createElement("button", {
+                            type: "button",
+                            className: "btn-table-action json-btn",
+                            onClick: () => {
+                              navigator.clipboard.writeText(JSON.stringify(item.payload || item.formData || item.rawNebula, null, 2));
+                              h("📋 Complete JSON payload copied to clipboard!");
+                            },
+                            title: "Copy JSON Payload"
+                          }, "📋"),
+                          React.createElement("button", {
+                            type: "button",
+                            className: "btn-table-action delete-btn",
+                            onClick: () => deleteHistoryItem(item.id),
+                            title: "Delete this record"
+                          }, "🗑️")
+                        )
                       )
                     )
                   );
